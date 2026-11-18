@@ -1,0 +1,13 @@
+stages:
+  - review
+
+ai_code_review:
+  stage: review
+  script:
+    - set -x
+    - echo "=== 1. 开始执行 AI 审查 === ==="
+    - python3 -u ai_review.py
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"  # 改为 push 事件触发
+
+  allow_failure: true
